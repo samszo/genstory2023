@@ -1,0 +1,1 @@
+d3.json('https://www.rit.motsvoir.org/admin/item/205').then(data>(console.log(data)));
