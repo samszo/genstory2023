@@ -8,12 +8,16 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-
-    <script>
-        d3.json('https://www.rit.motsvoir.org/api/items/137').then(data=>{
-            console.log(data);
-        })
-    </script>
-    
+    <div></div>
 </body>
+<script>
+    d3.json('https://www.rit.motsvoir.org/api/items/137').then(story=>{
+        console.log(story)
+        d3.select('body').select('div').data(story['genstory:hasActant']).enter()
+            .append('div').html(a=>{
+                return a.display_title
+            });
+    })
+</script>
+
 </html>
