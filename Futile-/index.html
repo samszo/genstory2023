@@ -12,7 +12,7 @@
     <script>
         d3.json('https://www.rit.motsvoir.org/api/items/51').then(story=>{
             console.log(story);
-            d3.select('body').selectAll('div').data(story['genstory:hasActant']).enter().append('div').html(a=>{return a.display_title});
+            d3.select('body').select('div').data(story['genstory:hasActant']).enter().append('div').html(a=>{return a.display_title});
         })
 
     </script>
