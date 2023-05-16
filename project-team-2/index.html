@@ -13,9 +13,9 @@
         d3.json('https://www.rit.motsvoir.org/api/items/137').then(story=>{
             console.log(story);
             d3.select("body").selectAll("div").data(story["genstory:hasActant"]).enter().append("div").html(a=>a.display_title);
-        })
+        });
 
-        
+
     </script>
     
 </body>
