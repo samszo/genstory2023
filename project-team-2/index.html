@@ -20,7 +20,7 @@
             //d3.selectAll(".place").data(story["genstory:hasLieu"]).attr("src", a=>a.thumbnail_url);
             //d3.selectAll(".affect").data(story["genstory:hasAffect"]).attr("alt", a=>a.display_title);
             
-            let scenePictures = ["Charles", "Phoenician town", "Bright Stars Land", "Pasadena", "Glade of fertile soil", "SUNBASE", "future tree"];
+            let scenePictures = ["Charles", "Phoenician town", "Bright Stars Land", "mountain", "Pasadena", "Glade of fertile soil", "tree", "girl", "hands", "heart", "people", "SUNBASE", "future tree", "child", "dance", "hands2", "stardom", "flowers", "dancer", "Aya and teenagers friends", "agt", "trophy", "end"];
             let sceneText = ["Charles had always been fascinated by science and the wonders of the universe.", 
             "As a young physics teacher in a small Phoenician town, he dreamed of exploring the stars and uncovering the secrets of the cosmos.", 
             "So when he heard about the Land of Bright Stars, he knew he had to do everything to be there.", 
@@ -28,7 +28,7 @@
             "until he finally arrived in Pasadena, land of the Rose Bowl, where anything seemed possible.",
             "There, he discovered a glade of fertile soil, a place of magic where he couldn't help but feel a sense of marvel and awe at the beauty of nature around him.",
             "One day, as he was wandering through the trees, he saw something that caught his eye. There, in the middle of a glade, was a young woman dancing with a grace and beauty that took his breath away. Her name was Maya, and from that moment on, Charles was utterly smitten. He watched in awe as Maya danced across the flowers, her movements fluid and graceful, like a leaf blowing in the wind. Charles was mesmerized by her beauty and grace. He felt a powerful connection to her, as if they were meant to be together.",
-            "He approached her and strike up a conversation. They quickly developed a friendship, bonding over their shared love of nature and their admiration for each other's talents and passions.",
+            "He approached her and struck up a conversation. They quickly developed a friendship, bonding over their shared love of nature and their admiration for each other's talents and passions.",
             "They fell deeply in love and their friendship blossomed into a romance that filled their hearts with joy and wonder.",
             "Over time, Charles and Maya grew closer, spending long hours talking about their hobbies, interests, and aspirations.",
             "They shared a sense of patriotism and admiration for the world around them, and they were both filled with a sense of bravery and courage to pursue their dreams and never give up.", 
@@ -65,6 +65,8 @@
             // i++;
             // }
 
+            let notOmeka = ["mountain", "tree", "girl", "hands", "heart", "people", "child", "dance", "hands2", "stardom", "flowers", "dancer", "agt", "trophy", "end"]
+            let notOmekaNum = 0;
             let i = 0;
             while (i < sections.length) {
 
@@ -77,6 +79,12 @@
                     if (scenePictures[i] === "future tree") {
                         img[0].setAttribute("src", objects[0].thumbnail_url);
                         text[0].innerHTML = sceneText[i];
+                        break;
+                    }
+                    if (notOmeka.includes(scenePictures[i])) {
+                        img[0].setAttribute("src", "img/".concat(notOmeka[notOmekaNum], ".png"));
+                        text[0].innerHTML = sceneText[i];
+                        notOmekaNum++;
                         break;
                     }
                     if (places[h].display_title === scenePictures[i]) {
@@ -107,7 +115,7 @@
     </script>
     <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
         <div>
-            <img class="char" src="" alt="" width=200 height=300> 
+            <img class="char" src="" alt=""> 
             <!-- <img class="place" src="" alt="" width=200 height=300>
             <img class= "affect" src="" alt="" width=200 height=300>
             -->
@@ -126,14 +134,14 @@
         </div>
     </section>
 
-    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-3 tm-border-rounded">
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
         <div>
             <img class="char" src="https://www.rit.motsvoir.org/files/square/d695fd9dea233ff365f3af207d9a80bb7e9a4c78.jpg" alt="Maya" width=200 height=300>
             <p></p>
         </div>
     </section>
 
-    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-4 tm-border-rounded">
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
         <div>
         <img class="char" src="" alt="" width=200 height=300>
             <p></p>
@@ -164,7 +172,7 @@
         </div>
     </section>
 
-    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
         <div>
             <img class="char" src="" alt="" width=200 height=300> 
             <!-- <img class="place" src="" alt="" width=200 height=300>
@@ -184,7 +192,7 @@
         </div>
     </section>
 
-    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
         <div>
             <img class="char" src="" alt="" width=200 height=300> 
             <!-- <img class="place" src="" alt="" width=200 height=300>
@@ -204,7 +212,7 @@
         </div>
     </section>
 
-    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
         <div>
             <img class="char" src="" alt="" width=200 height=300> 
             <!-- <img class="place" src="" alt="" width=200 height=300>
@@ -224,7 +232,7 @@
         </div>
     </section>
 
-    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
         <div>
             <img class="char" src="" alt="" width=200 height=300> 
             <!-- <img class="place" src="" alt="" width=200 height=300>
@@ -244,7 +252,7 @@
         </div>
     </section>
 
-    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
         <div>
             <img class="char" src="" alt="" width=200 height=300> 
             <!-- <img class="place" src="" alt="" width=200 height=300>
@@ -264,7 +272,7 @@
         </div>
     </section>
 
-    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
         <div>
             <img class="char" src="" alt="" width=200 height=300> 
             <!-- <img class="place" src="" alt="" width=200 height=300>
@@ -284,7 +292,7 @@
         </div>
     </section>
 
-    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
         <div>
             <img class="char" src="" alt="" width=200 height=300> 
             <!-- <img class="place" src="" alt="" width=200 height=300>
@@ -304,7 +312,25 @@
         </div>
     </section>
 
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
 
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
     
     
 </body>
