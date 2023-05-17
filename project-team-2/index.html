@@ -6,17 +6,308 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charles and Maya</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="css/tooplate-style.css" rel="stylesheet">
 </head>
 <body>
-
-    <script>
+    <script onload="">
         d3.json('https://www.rit.motsvoir.org/api/items/137').then(story=>{
             console.log(story);
-            d3.select("body").selectAll("div").data(story["genstory:hasActant"]).enter().append("div").html(a=>a.display_title);
+            //d3.selectAll("p").data(story["genstory:hasActant"]).html(a=>a.display_title);
+            //d3.selectAll(".char").data(story["genstory:hasActant"]).attr("src", a=>a.thumbnail_url);
+            //d3.selectAll(".char").data(story["genstory:hasActant"]).attr("alt", a=>a.display_title);
+            //d3.selectAll(".place").data(story["genstory:hasLieu"]).attr("src", a=>a.thumbnail_url);
+            //d3.selectAll(".affect").data(story["genstory:hasAffect"]).attr("alt", a=>a.display_title);
+            
+            let scenePictures = ["Charles", "Phoenician town", "Bright Stars Land", "Pasadena", "Glade of fertile soil", "SUNBASE", "future tree"];
+            let sceneText = ["Charles had always been fascinated by science and the wonders of the universe.", 
+            "As a young physics teacher in a small Phoenician town, he dreamed of exploring the stars and uncovering the secrets of the cosmos.", 
+            "So when he heard about the Land of Bright Stars, he knew he had to do everything to be there.", 
+            "He traveled for eleven days, making his way across deserts, through mountains and over the sea.",
+            "until he finally arrived in Pasadena, land of the Rose Bowl, where anything seemed possible.",
+            "There, he discovered a glade of fertile soil, a place of magic where he couldn't help but feel a sense of marvel and awe at the beauty of nature around him.",
+            "One day, as he was wandering through the trees, he saw something that caught his eye. There, in the middle of a glade, was a young woman dancing with a grace and beauty that took his breath away. Her name was Maya, and from that moment on, Charles was utterly smitten. He watched in awe as Maya danced across the flowers, her movements fluid and graceful, like a leaf blowing in the wind. Charles was mesmerized by her beauty and grace. He felt a powerful connection to her, as if they were meant to be together.",
+            "He approached her and strike up a conversation. They quickly developed a friendship, bonding over their shared love of nature and their admiration for each other's talents and passions.",
+            "They fell deeply in love and their friendship blossomed into a romance that filled their hearts with joy and wonder.",
+            "Over time, Charles and Maya grew closer, spending long hours talking about their hobbies, interests, and aspirations.",
+            "They shared a sense of patriotism and admiration for the world around them, and they were both filled with a sense of bravery and courage to pursue their dreams and never give up.", 
+            "Meanwhile, Charles had worked hard to become the Director of SUNBASE, a prestigious institution for scientific research.",
+            "One day, Charles decided to plant a tree there. He named the tree Mayyas, in honor of his beloved Maya. As the tree grew, it gave Charles great wisdom and helped him to become a role model. The tree became a symbol of hope and inspiration for all who saw it.",
+            "Maya had her own story to tell as well. Since childhood, she was involved in dancing.",
+            "She grew up dancing bachata with her family members, and when she was old enough, her parents enrolled her in dance classes.", 
+            "One day, Maya presented to her family that she was going to pursue dancing professionally. Her parents immediately disapproved, for dancing was only meant as a hobby and wasn’t viable as a career. Maya’s parents also believed she should go to college to find a husband and then settle down and have children.",
+            "Thus, she left her hometown to pursue her dreams of stardom.",
+            "Luckily, she met Charles, who stood by her side and gave her strength to keep going.",
+            "As a matter of fact, she had inspired others as well. Aya, a schoolgirl who had seen one of Maya’s performances, was so inspired that she decided to follow in Maya’s footsteps.",
+            "She even created her own dance band with other teenagers, where they competed locally and practiced together.",
+            "Soon enough, Aya and her troupe decided they were ready to compete nationally.",
+            "They won many national and international competitions, and gained success globally.",
+            "Five years later, Charles and Maya reunited at the glade, under the shade of the towering Mayyas tree. As they gazed up at its branches, they realized that their love had blossomed like the tree, growing stronger and more beautiful with each passing year."]
+            let sceneChars = ["charles"];
 
             
-        })
+            let actors = story["genstory:hasActant"];
+            let places = story["genstory:hasLieu"];
+            let objects = story["genstory:hasObjet"];
+
+            let sections = document.getElementsByTagName("section");
+            // while (i < actors.length) {
+            //     if (actors[i].display_title === "Maya") {
+            //         sections[i].style.backgroundColor = "pink";
+            //     }
+            //     else if (actors[i].display_title === "Charles") {
+            //        sections[i].style.backgroundColor = "blue"; 
+            //     }
+            //     else if (actors[i].display_title === "Aya") {
+            //        sections[i].style.backgroundColor = "red"; 
+            //     }
+            // i++;
+            // }
+
+            let i = 0;
+            while (i < sections.length) {
+
+                let current = sections[i];
+                let img = current.getElementsByTagName('img');
+                let text = current.getElementsByTagName('p');
+                let h = 0;
+                while (h < Math.max(places.length, actors.length, objects.length)) {
+                    console.log(scenePictures[i]);
+                    if (scenePictures[i] === "future tree") {
+                        img[0].setAttribute("src", objects[0].thumbnail_url);
+                        text[0].innerHTML = sceneText[i];
+                        break;
+                    }
+                    if (places[h].display_title === scenePictures[i]) {
+                        console.log("actors");
+                        img[0].setAttribute("src", places[h].thumbnail_url);
+                        text[0].innerHTML = sceneText[i];
+                        break;
+                    }
+                    else if (actors[h].display_title === scenePictures[i]) {
+                        console.log("place")
+                        img[0].setAttribute("src", actors[h].thumbnail_url);
+                        text[0].innerHTML = sceneText[i];
+                        break;
+                    }
+                    else {
+                        console.log("wtf");
+                    }
+                    h++;
+                }
+                i++;
+            }
+
+
+        });
+
+
+
     </script>
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
+        <div>
+        <img class="char" src="" alt="" width=200 height=300>
+        <!-- <img class="place" src="" alt="" width=200 height=300>
+        <img class= "affect" src="" alt="" width=200 height=300>
+        -->    
+        <p>As a young phyics teacher in a small...</p>
+        <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-3 tm-border-rounded">
+        <div>
+            <img class="char" src="https://www.rit.motsvoir.org/files/square/d695fd9dea233ff365f3af207d9a80bb7e9a4c78.jpg" alt="Maya" width=200 height=300>
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-4 tm-border-rounded">
+        <div>
+        <img class="char" src="" alt="" width=200 height=300>
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300>
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
+        <div>
+        <img class="char" src="" alt="" width=200 height=300>
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <!-- <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            -->
+            <p></p>
+        </div>
+    </section>
+
+
+    
     
 </body>
-</html>
+
+
+		

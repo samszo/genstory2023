@@ -1,0 +1,77 @@
+html, body{
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background-color:aliceblue;
+}
+.wrapper{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+/* https://codepen.io/riojosdev/pen/RwrROqy */
+
+#dialog-1{
+    display:none;
+    height: 20%;
+    width: 40%;
+    background-color: lightblue;
+    position: absolute;
+    /* border-radius: 10%; */
+}
+
+.left-point{
+	width: 0;
+	height: 0;
+	border-left: 2vh solid transparent;
+	border-right: 2vh solid transparent;
+	border-top: 10vh solid lightblue;
+	position: absolute;
+	top: 45%;
+	left: -9%;
+	transform: rotate(60deg);
+}
+
+.right-point{
+	width: 0;
+	height: 0;
+	border-left: 2vh solid transparent;
+	border-right: 2vh solid transparent;
+	border-top: 10vh solid lightblue;
+	position: absolute;
+	top: 45%;
+	right: -9%;
+	transform: rotate(-60deg);
+}
+.stack-top{
+    z-index: 9;
+    margin: 20px; /* for demo purpose  */
+}
+
+.animals{
+    display: flex;
+    position:absolute;
+    bottom:0;
+    right: 10%;
+    left: 10%;
+}
+.animal{
+    display: flex;
+}
+.dog{
+}
+.cat{
+}
+.turtle{
+}
+.snake{
+}
