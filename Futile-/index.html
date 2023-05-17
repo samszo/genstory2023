@@ -1,6 +1,31 @@
 <!DOCTYPE HTML>
-<html>>
-  <body>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futile</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
     <h1>When arguing is futile</h1>
-  </body>
+    <h2> Who should be the King ?</h2>
+    <div id="story"></div>
+</body>
+<script type="module">
+import {omk} from '../modules/omk.js';
+import {genStory} from '../modules/genStory.js';
+
+let o = new omk({'api':'https://www.rit.motsvoir.org/api/'}),
+    story = new genStory({
+        'omk':o,
+        'process':false,
+        'id':51,
+        'container':d3.select('#story')
+    });
+    story.setMedia(o.getItem(162),"height:300px;");
+    story.setMedia(o.getItem(163),"font: italic 128px sans-serif;fill: bisque;x: 171pxy: 223px;");
+
+</script>
+
 </html>

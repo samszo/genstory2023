@@ -7,19 +7,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Las Mascotas</title>
 
+    <link rel ="stylesheet" href="./assets/css/style.css">
+
+
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- <script src="assets/js/story.js"></script> -->
+    <script src="assets/js/story.js"></script>
 </head>
 <body>
-    <script>
-        // link story items
-        d3.json('https://www.rit.motsvoir.org/api/items/137').then(story=>{
-        console.log(story)
-        d3.select('body').select('div').data(story['genstory:hasActant']).enter()
-            .append('div').html(a=>{
-                return a.display_title
-            });
-    })
-    </script> 
+    <div class="wrapper">
+        <div class="animals">
+            <!-- <a href=""> -->
+                <div class="animal dog" onclick="ShowAndHide()">
+                    <img src="./assets/images/dog.png">
+                </div>
+                <div id="dialog-1">
+                    <div class="right-point">
+                    </div>
+                </div>
+            <!-- </a> -->
+            <!-- <a href=""> -->
+                <div class="animal cat">
+                    <img src="./assets/images/cat.png">
+                </div>
+            <!-- </a> -->
+            <!-- <a href=""> -->
+                <div class="animal turtle">
+                    <img src="./assets/images/turtle.png">
+                </div>
+            <!-- </a> -->
+            <!-- <a href=""> -->
+                <div class="animal snake">
+                    <img src="./assets/images/snake.png">
+                </div>
+            <!-- </a> -->
+        </div>
+    </div> 
 </body>
 </html>
