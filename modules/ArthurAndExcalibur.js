@@ -94,9 +94,6 @@ export class ArthurAndExcalibur {
                 case 'lieu':
                     me.params[p]=me.omk.getItem(68);
                     break;            
-                case 'Excalibur':
-                    me.params[p]=me.omk.getRandomItemByClass(p);
-                    break;            
                 default:
                     me.params[p]=me.omk.getRandomItemByClass(p);
                     break;

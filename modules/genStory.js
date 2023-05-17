@@ -34,7 +34,7 @@ export class genStory {
 
         this.setMedia=function(p,style){
             //build media from item 
-            if(p['o:media']){
+            if(p['o:media'].length){
                 if(!p.medias)me.omk.getMedias(p);
                 let m = p.medias[Math.floor(Math.random()*p.medias.length)],
                     idm = 'media'+p['o:id']+'_'+m['o:id'];
@@ -48,7 +48,9 @@ export class genStory {
                     .attr('y',0)
                     .attr('style',style);
             }else{
-                p.g = g.append('g').attr('id','media'+p['o:id']).append('text').text(p['o:title']);
+                p.g = g.append('text').attr('id','text'+p['o:id'])
+                    .attr('style',style)
+                    .text(p['o:title']);
             }
             
         }
