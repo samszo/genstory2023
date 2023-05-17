@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <title>Document</title>
+
+</head>
+<body>
+    <div class ="container">
+        <h1>Title</h1>
+    </div>
+    <div id="items"></div>
+
+    <script>
+        d3.json('https://www.rit.motsvoir.org/api/items/206').then(story=>{
+            objects = [], doublons=[];
+            let nb = story["genstory:hasActant"].length;
+            while(objects.length < 10)
+            {
+                index = Math.floor(Math.random() * nb);
+                if(!doublons[index]){
+                  objects.push(story["genstory:hasActant"][index]);
+                  doublons[index]=true;
+                }
+            }
+          
+            d3.select('#items').select('div').data(objects).enter().append('div').html(a=>{
+                return a.display_title
+            }).append('button')
+                .style('position','absolute')
+                .style('left',(a,i)=>getRandomPosition(i))
+                .style('top',(a,i)=>getRandomPosition(i))
+                .html('test')
+                .on('click',buttonClick);
+         });
+
+         function getRandomPosition(i){
+            return Math.floor(Math.random() * 200)+'px'
+         }
+
+         function buttonClick(i,e){
+            console.log(i);
+         }
+
+    </script> 
+
+</body>
+</html>

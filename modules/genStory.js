@@ -32,7 +32,7 @@ export class genStory {
             me.getEvents();
         }
 
-        this.setMedia=function(p,style){
+        this.setMedia=function(p,style,attributes){
             //build media from item 
             if(p['o:media'].length){
                 if(!p.medias)me.omk.getMedias(p);
@@ -50,9 +50,11 @@ export class genStory {
             }else{
                 p.g = g.append('text').attr('id','text'+p['o:id'])
                     .attr('style',style)
-                    .text(p['o:title']);
+                    .text(p['o:title']);                
             }
-            
+            for (const prop in attributes) {
+                p.g.attr(prop,attributes[prop]);
+            }
         }
         this.getEvents = function (){                        
             me.story['genstory:hasEvenement'].forEach(e=>{
