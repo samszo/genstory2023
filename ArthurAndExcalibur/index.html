@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arthu & Excalibur</title>
+    <title>Arthur & Excalibur</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-    <div></div>
+    <div id="story"></div>
 </body>
-<script>
-    d3.json('https://www.rit.motsvoir.org/api/items/137').then(story=>{
-        console.log(story)
-        d3.select('body').select('div').data(story['genstory:hasActant']).enter()
-            .append('div').html(a=>{
-                return a.display_title
-            });
-    })
+<script type="module">
+import {omk} from '../modules/omk.js';
+import {genStory} from '../modules/genStory.js';
+import {ArthurAndExcalibur} from '../modules/ArthurAndExcalibur.js';
+
+let o = new omk({'api':'https://www.rit.motsvoir.org/api/'}),
+    story = new genStory({
+        'omk':o,
+        'process':new ArthurAndExcalibur({'omk':o}),
+        'id':39,
+        'container':d3.select('#story')
+    });
+    story.showEvent(story.getFirstEvent());
 </script>
 
 </html>
