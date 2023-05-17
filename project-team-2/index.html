@@ -6,17 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Charles and Maya</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="css/tooplate-style.css" rel="stylesheet">
 </head>
 <body>
-
     <script>
         d3.json('https://www.rit.motsvoir.org/api/items/137').then(story=>{
             console.log(story);
-            d3.select("body").selectAll("div").data(story["genstory:hasActant"]).enter().append("div").html(a=>a.display_title);
+            d3.selectAll("h1").data(story["genstory:hasActant"]).html(a=>a.display_title);
+            d3.selectAll(".char").data(story["genstory:hasActant"]).attr("src", a=>a.thumbnail_url);
+            d3.selectAll(".char").data(story["genstory:hasActant"]).attr("alt", a=>a.display_title);
+            d3.selectAll(".place").data(story["genstory:hasLieu"]).attr("src", a=>a.thumbnail_url);
+            d3.selectAll(".affect").data(story["genstory:hasAffect"]).attr("alt", a=>a.display_title);
 
-            
-        })
+        });
+
+
+
     </script>
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300> 
+            <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            <h1></h1>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
+        <div>
+        <img class="char" src="" alt="" width=200 height=300>
+        <img class="place" src="" alt="" width=200 height=300>
+        <img class= "affect" src="" alt="" width=200 height=300>
+            <h1></h1>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-3 tm-border-rounded">
+        <div>
+            <img class="char" src="https://www.rit.motsvoir.org/files/square/d695fd9dea233ff365f3af207d9a80bb7e9a4c78.jpg" alt="Maya" width=200 height=300>
+            <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            <h1></h1>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-4 tm-border-rounded">
+        <div>
+        <img class="char" src="" alt="" width=200 height=300>
+        <img class="place" src="" alt="" width=200 height=300>
+        <img class= "affect" src="" alt="" width=200 height=300>
+            <h1></h1>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-1 tm-border-rounded">
+        <div>
+            <img class="char" src="" alt="" width=200 height=300>
+            <img class="place" src="" alt="" width=200 height=300>
+            <img class= "affect" src="" alt="" width=200 height=300>
+            <h1></h1>
+        </div>
+    </section>
+
+    <section class="tm-site-header tm-flex-center tm-mb-50 tm-bgcolor-2 tm-border-rounded">
+        <div>
+        <img class="char" src="" alt="" width=200 height=300>
+        <img class="place" src="" alt="" width=200 height=300>
+        <img class= "affect" src="" alt="" width=200 height=300>
+            <h1></h1>
+        </div>
+    </section>
+
+
+    
     
 </body>
-</html>
+
+
+		
