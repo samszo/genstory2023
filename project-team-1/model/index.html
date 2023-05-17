@@ -34,7 +34,7 @@
                 .style('position','absolute')
                 .style('left',(a,i)=>getRandomPosition(i))
                 .style('top',(a,i)=>getRandomPosition(i))
-                .html('test')
+                .html(a.display_title)
                 .on('click',buttonClick);
          });
 
@@ -43,6 +43,7 @@
          }
 
          function buttonClick(i,e){
+
             console.log(i);
          }
 
