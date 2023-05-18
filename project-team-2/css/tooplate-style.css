@@ -1,0 +1,68 @@
+/*
+
+Tooplate 2122 Nano Folio
+
+https://www.tooplate.com/view/2122-nano-folio
+
+*/
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    line-height: 1em;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: #38CCCC;
+}
+
+a:hover { color: #30ADAD; }
+
+.tm-about-text a { color: #9F6; }
+
+h1, h2, p, i, address, .tm-text-white { color: white; }
+
+.tm-link-gray { color: #999999; }
+.tm-link-white { color: white; }
+
+
+.tm-flex-center {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.tm-p-50 { padding: 100px; }
+.tm-mb-0 { margin-bottom: 0; }
+.tm-mb-30 { margin-bottom: 30px }
+.tm-mb-40 { margin-bottom: 40px; }
+.tm-mb-50 { margin-bottom: 50px; }
+.tm-mb-80 { margin-bottom: 80px; }
+.tm-bgcolor-1 { background-color: #F96699; }
+.tm-bgcolor-2 { background-color: #38CCCC; }
+.tm-bgcolor-3 { background-color: #99CCCC; }
+.tm-bgcolor-4 { background-color: #000a96; }
+.tm-border-rounded { border-radius: 15px; }
+
+section {
+    width: 75%;
+    text-align: center;
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 15px;
+    height: 500px;
+}
+
+img {
+    width: 500px; 
+    height: 400px;
+
+}

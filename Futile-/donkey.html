@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Donkey King</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+
+<body>
+
+    <h1>The Donkey King</h1>
+
+    <h2></h2>
+    <img></img>
+    <a href="./index.html"><button>Return to Main Menu</button></a>
+
+    <script>
+        let indices = [228, 229, 230, 231, 232, 233, 235, 236, 237, 238, 239, 240, 242, 243];
+        var event = 0;
+
+        //var text = "o:title"
+        function ShowAndHide() {
+
+    
+            document.getElementsByTagName("button")[1].innerHTML = 'Next';
+    
+            let text = 'https://www.rit.motsvoir.org/api/items/'.concat(indices[event]);
+            d3.json(text).then(story => {
+                console.log(story);
+                //d3.select("h2").data(story["o:title"]).attr("src", a=>a.thumbnail_url);
+                console.log(story["o:title"]);
+                if(event<indices.length){
+                    document.getElementsByTagName("h2")[0].innerHTML = story["o:title"];
+                    document.getElementsByTagName("img")[0].src = story["o:thumbnail_urls"];  
+                }
+                else{
+                    document.getElementsByTagName("h2")[0].innerHTML = "The End";
+                    document.getElementsByTagName("button")[1].disabled = true;
+                }
+            })
+    
+            //document.getElementsByTagName("h2")[0].innerHTML = story["genstory:hasEvenement"];
+            event++;
+            console.log(event);
+        }
+    
+    </script>
+
+    <button onClick="ShowAndHide()">Start Story</button>
+
+</body>
+
+</html>
