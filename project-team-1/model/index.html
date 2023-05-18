@@ -32,22 +32,28 @@
                 return a.display_title
             }).append('button')
                 .style('position','absolute')
-                .style('left',(a,i)=>getRandomPosition(i))
-                .style('top',(a,i)=>getRandomPosition(i))
-                .html(a.display_title)
+                .style('left',(a,i)=>getRandomLeftPosition(i))
+                .style('top',(a,i)=>getRandomTopPosition(i))
+                .html(a=>a.display_title)
                 .on('click',buttonClick);
          });
 
-         function getRandomPosition(i){
-            return Math.floor(Math.random() * 200)+'px'
+         function getRandomLeftPosition(i){
+            return Math.floor((Math.random() * (window.innerWidth-100))+50)+'px'
+         }
+
+         function getRandomTopPosition(i){
+            return Math.floor((Math.random() * (window.innerHeight-200))+200)+'px'
          }
 
          function buttonClick(i,e){
-
             console.log(i);
+            // rubber_duck.html
+            window.location.href = i + ".html"
          }
-
     </script> 
+
+    <a href="Rubber Duck.html"> <button>Rubber Duck Testing</button> </a>
 
 </body>
 </html>
