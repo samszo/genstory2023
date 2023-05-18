@@ -7,7 +7,9 @@ export class ArthurAndExcalibur {
         this.params={};
         this.omk = params.omk ? params.omk : false;
         this.gen = params.gen ? params.gen : false;
-        this.posiLookFor = {'x':0,'y':0,'w':0,'h':0};
+        this.posiLookFor = false;
+        this.maxWalk = 10;
+        this.nbWalk = 0;
 
         this.init = function () {
         }
@@ -36,11 +38,11 @@ export class ArthurAndExcalibur {
                 me.gen.setMedia(me.params['Excalibur'],s);
             else
                 me.params['Excalibur'].g.style(s);
-
         }
-        function rectIntersect(x1, y1, w1, h1, x2, y2, w2, h2) {
+
+        function rectIntersect(p1, p2) {
             // Check x and y for overlap
-            if (x2 > w1 + x1 || x1 > w2 + x2 || y2 > h1 + y1 || y1 > h2 + y2){
+            if (p2.x > p1.w + p1.x || p1.x > p2.w + p2.x || p2.y > p1.h + p1.y || p1.y > p2.h + p2.y){
                 return false;
             }
             return true;
@@ -60,37 +62,46 @@ export class ArthurAndExcalibur {
                 me.gen.setMedia(me.params['actant'],s);
             else me.params['actant'].g.style(s)
             //actant walk in place to a random position 
+            me.nbWalk=0;
             aleaMove(me.params['actant'])           
         }
         var randomMovement = function(d) {
-            return  anime.random(-20, 20) + 'rem'
+            return  anime.random(0, me.gen.screenSize[d]) //+ 'rem'
         };
         
         var randomSpeed = function() {
-          return anime.random(3000, 5000) + 'rem'  
+          return anime.random(3000, 5000) //+ 'rem'  
         };        
         function aleaMove(p){
-            console.log("animation");
-            var timelineParameters = anime.timeline({
+            let a = anime.timeline({
                 loop: false
-            });
+            }), n = p.g.node(), end=false;
         
-            timelineParameters
-            .add({
-                targets: p.g.node(),
-                translateX: 0,
-                translateY: me.gen.screenSize.h,
-                duration: 100
-                })
-            .add({
-                targets: p.g.node(),
+            a.add({
+                targets: n,
                 translateX: [ { value: randomMovement('w')}, { value: randomMovement('w') }, { value: randomMovement('w') }],
                 translateY: [ { value: randomMovement('h')}, { value: randomMovement('h') }, { value: randomMovement('h') } ],
                 //opacity: [ {value: 0.5 }, { value: 0 }],
                 easing: 'linear',
-                duration: randomSpeed
+                duration: randomSpeed,
+                update: function(anim) {
+                    if(Math.round(anim.progress)==100)me.nbWalk++;
+                    if(me.posiLookFor){
+                        let b = n.getBoundingClientRect(),
+                        posi = {'x':b.x,'y':b.y,'w':b.width,'h':b.height};
+                        if(rectIntersect(posi,me.posiLookFor)){
+                            a.pause();
+                            end=true;
+                            me.gen.processSuccess();
+                        }
+                    }
+                    if(me.nbWalk > me.maxWalk){
+                        end=true;
+                        me.gen.processEchec();
+                    }
+                }
             });
-            timelineParameters.complete = function() {aleaMove(p);};
+            a.complete = function() {if(!end)aleaMove(p);};
         }
         this.getParam=function(p){
             if(me.params[p])return me.params[p];

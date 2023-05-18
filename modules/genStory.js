@@ -9,7 +9,8 @@ export class genStory {
         this.screenSize = params.screenSize ? params.screenSize : {'w':800,'h':600};
 
         this.events = [];
-        this.curEvent = 0;
+        this.curEventId = 0;
+        this.curEvent=false;
         var svg, g;
                 
         this.init = function () {
@@ -69,6 +70,7 @@ export class genStory {
         }
 
         this.processEvent= function(e){
+            me.curEvent = e;
             if(e["genstory:hasConditionInitial"]){
                 let ci =  e["genstory:hasConditionInitial"][0]['@value'];
                 if(me.process && me.process.do(ci)){
@@ -79,15 +81,34 @@ export class genStory {
                 };
             }
         }
+        function getRandomItem(a){
+           return a[Math.floor(Math.random()*a.length)]
+        }
+        this.processSuccess = function(){
+            if(me.curEvent["genstory:hasEvenementAfterValid"]){
+                let e = getRandomItem(me.curEvent["genstory:hasEvenementAfterValid"])
+                me.processEvent(me.getEventByTitle(e.display_title))
+            }else me.processEvent(me.getNextEvent());
+        }
+        this.processEchec = function(){
+            if(me.curEvent["genstory:hasEvenementAfterEchec"]){
+                let e = getRandomItem(me.curEvent["genstory:hasEvenementAfterEchec"])
+                me.processEvent(me.getEventByTitle(e.display_title));
+            }else me.processEvent(me.getFirstEvent());
+        }
+
+        this.getEventByTitle= function(n){
+            return me.events.filter(ev=>ev.display_title==n)[0];
+        }
 
         this.getFirstEvent= function(){
-            me.curEvent = 0;
-            return me.events[me.curEvent];
+            me.curEventId = 0;
+            return me.events[me.curEventId];
         }
 
         this.getNextEvent= function(){
-            me.curEvent++;
-            return me.events[me.curEvent];
+            me.curEventId++;
+            return me.events[me.curEventId];
         }
 
         function syncRequest(q){
