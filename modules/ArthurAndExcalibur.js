@@ -3,11 +3,11 @@ import anime from './anime.es.js';
 export class ArthurAndExcalibur {
     constructor(params) {
         var me = this;
-        this.isFind = {'Excalibur':false};        
+        this.isFind = [];        
         this.params={};
         this.omk = params.omk ? params.omk : false;
         this.gen = params.gen ? params.gen : false;
-        this.posiLookFor = false;
+        this.itemsLookFor = [];
         this.maxWalk = 10;
         this.nbWalk = 0;
 
@@ -23,21 +23,48 @@ export class ArthurAndExcalibur {
                     return me.LookFor(p);
                     break;            
                 case 'ExcaliburIsNotFind':
-                    return me.isFind.Excalibur ? false : true;
+                    return isItemFind('Excalibur') ? false : true;
+                    break;            
+                case 'ExcaliburIsFind':
+                    return isItemFind('Excalibur');
+                    break;            
+                case 'take':
+                    return me.take(p);
                     break;            
             }
         }
+        function isItemFind(n){
+            return me.isFind.filter(i=>i.ilf.o['o:title']==n).length;
+        }
+        this.take=function(p){
+            //get last object find
+            //TODO:get the object find by aactant ?
+            let oLastFound = me.isFind[me.isFind.length-1];
+
+            //add line between actant and object
+            me.gen.g.append('line')
+                .attr('id',oLastFound.a['o:id']+'_take_'+oLastFound.ilf.o['o:id'])
+                .style("stroke", "lightgreen")
+                .style("stroke-width", 10)
+                .attr("x1", oLastFound.p.x)
+                .attr("y1", oLastFound.p.y)
+                .attr("x2", oLastFound.ilf.p.x+(oLastFound.ilf.p.w/2))
+                .attr("y2", oLastFound.ilf.p.y+(oLastFound.ilf.p.h/2)); 
+        }
+
         this.LookFor=function(p){
             p.split(',').forEach(par => {
                 me.getParam(par.trim());
             });
             //put Excalibur somewhere in screen
-            me.posiLookFor={'x':anime.random(128, me.gen.screenSize.w-128),'y':anime.random(128, me.gen.screenSize.h-128),'w':128,'h':128}
-            let s = "height:"+me.posiLookFor.h+"px;x:"+me.posiLookFor.x+"px;y:"+me.posiLookFor.y+"px";
+            let ilf = {'p':{'x':anime.random(128, me.gen.screenSize.w-128),'y':anime.random(128, me.gen.screenSize.h-128),'w':128,'h':128}},
+                s = "height:"+ilf.p.h+"px;x:"+ilf.p.x+"px;y:"+ilf.p.y+"px";
             if(!me.params['Excalibur'].g)
                 me.gen.setMedia(me.params['Excalibur'],s);
             else
                 me.params['Excalibur'].g.style(s);
+            ilf.o = me.params['Excalibur'];
+            me.itemsLookFor.push(ilf);
         }
 
         function rectIntersect(p1, p2) {
@@ -72,10 +99,14 @@ export class ArthurAndExcalibur {
         var randomSpeed = function() {
           return anime.random(3000, 5000) //+ 'rem'  
         };        
-        function aleaMove(p){
+        /**
+         * Random move for a spécifique existence
+         * @param  {object} e the existence is moving
+         */        
+        function aleaMove(e){
             let a = anime.timeline({
                 loop: false
-            }), n = p.g.node(), end=false;
+            }), n = e.g.node(), end=false;
         
             a.add({
                 targets: n,
@@ -86,14 +117,20 @@ export class ArthurAndExcalibur {
                 duration: randomSpeed,
                 update: function(anim) {
                     if(Math.round(anim.progress)==100)me.nbWalk++;
-                    if(me.posiLookFor){
+                    if(me.itemsLookFor.length){
                         let b = n.getBoundingClientRect(),
                         posi = {'x':b.x,'y':b.y,'w':b.width,'h':b.height};
-                        if(rectIntersect(posi,me.posiLookFor)){
-                            a.pause();
-                            end=true;
-                            me.gen.processSuccess();
-                        }
+                        me.itemsLookFor.forEach(ilf=>{
+                            if(rectIntersect(posi,ilf.p)){
+                                a.pause();
+                                end=true;
+                                //add posi of find object
+                                //and actant who find object
+                                //TODO: more than one actant find the object
+                                me.isFind.push({'ilf':ilf,'a':e,'p':posi});
+                                me.gen.processSuccess();
+                            }    
+                        })
                     }
                     if(me.nbWalk > me.maxWalk){
                         end=true;
@@ -101,7 +138,7 @@ export class ArthurAndExcalibur {
                     }
                 }
             });
-            a.complete = function() {if(!end)aleaMove(p);};
+            a.complete = function() {if(!end)aleaMove(e);};
         }
         this.getParam=function(p){
             if(me.params[p])return me.params[p];
