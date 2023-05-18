@@ -5,23 +5,26 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Tiger King</title>
+    <title>The Lion King</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 
+
 <body>
 
-    <h1>The Tiger King</h1>
+    <h1>The Lion King</h1>
 
     <h2></h2>
-    <button onClick="ShowAndHide()">Next</button>
+    <a href="./index.html"><button>Return to Main Menu</button></a>
 
     <script>
-        let indices = [170, 172, 173, 216, 218, 220, 221, 222, 225];
+        let indices = [170, 172, 173, 174, 175, 177, 178];
         var event = 0;
         function ShowAndHide() {
 
-
+    
+            document.getElementsByTagName("button")[1].innerHTML = 'Next';
+    
             let text = 'https://www.rit.motsvoir.org/api/items/'.concat(indices[event]);
             d3.json(text).then(story => {
                 console.log(story);
@@ -30,10 +33,11 @@
                 //d3.select("h2").attr("o", a=>a.title);
                 document.getElementsByTagName("h2")[0].innerHTML = story["o:title"];
             })
-
+    
             //document.getElementsByTagName("h2")[0].innerHTML = story["genstory:hasEvenement"];
             event++;
             console.log(event);
+    
             // if (x.style.display == 'none') {
             //     x.style.display = 'block';
             //     // console.log("hello")
@@ -41,10 +45,10 @@
             //     x.style.display = 'none';
             // }
         }
-
-
+    
     </script>
 
+    <button onClick="ShowAndHide()">Start Story</button>
 
 </body>
 
