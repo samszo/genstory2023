@@ -28,6 +28,25 @@ h1{
 }
 
 
+#flashMe {
+  height:500px;
+  width:500px;
+  background:black;
+
+  animation: flash 3s forwards linear normal;
+}
+@keyframes flash {
+  0% {
+    background-image: url(background.png);
+  }
+  10% {
+    background:black;
+  }
+  100% {
+    background:black;
+  }
+}
+
 
 
 model-viewer {

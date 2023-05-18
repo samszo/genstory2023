@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="./styles.css">
-    <title>Document</title>
+    <title>Dreamscape</title>
 
 </head>
 <body>
@@ -47,13 +47,22 @@
          }
 
          function buttonClick(i,e){
-            console.log(i);
-            // rubber_duck.html
-            window.location.href = i + ".html"
+            window.location.href = e.display_title + ".html"
          }
     </script> 
 
-    <a href="Rubber Duck.html"> <button>Rubber Duck Testing</button> </a>
+    <a href="RubberDuck.html"> <button>Rubber Duck Testing</button> </a>
+
+    <script>
+        d3.json('https://www.rit.motsvoir.org/api/items/125').then(item=>{
+            alert(item["dcterms:description"][0]["@value"]);
+      /*d3.select('#items').select('div').data([item]).enter().append('div').html(a=>{
+               return a["dcterms:description"][0]["@value"]
+        });*/
+    });
+    </script>
+
 
 </body>
+
 </html>

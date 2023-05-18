@@ -20,7 +20,7 @@ function onClick() {
     if(sessionStorage.getItem("clickCount") == null){
       clickCounter = sessionStorage.setItem("clickCount", 0);
     }
-    else if(sessionStorage.getItem("clickCount") >= 10)
+    else if(sessionStorage.getItem("clickCount") >= 5)
     {
       clickCounter = sessionStorage.setItem("clickCount", 0);
       //add ending of game
@@ -32,7 +32,7 @@ function onClick() {
     clicks++; 
     clickCounter = sessionStorage.setItem("clickCount", clicks);
     document.getElementById("clicks").innerHTML = clicks;
-    alert(clickCounter);
+ //   alert(clickCounter);
 };
 
 
