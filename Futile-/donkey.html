@@ -35,7 +35,7 @@
                 console.log(story["o:title"]);
                 if(event<indices.length){
                     document.getElementsByTagName("h2")[0].innerHTML = story["o:title"];
-                    document.getElementsByTagName("img")[0].src = story["thumbnail_urls"]["large"];  
+                    document.getElementsByTagName("img")[0].src = story["thumbnail_display_urls"]["large"];  
                 }
                 else{
                     document.getElementsByTagName("h2")[0].innerHTML = "The End";
