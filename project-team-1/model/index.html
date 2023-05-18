@@ -17,7 +17,7 @@
 
     <script>
         d3.json('https://www.rit.motsvoir.org/api/items/206').then(story=>{
-            objects = [], doublons=[];
+            objects = [], doublons=[]; 
             let nb = story["genstory:hasActant"].length;
             while(objects.length < 10)
             {
@@ -66,3 +66,4 @@
 </body>
 
 </html>
+
