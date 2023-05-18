@@ -1,4 +1,6 @@
 // Handles loading the events for <model-viewer>'s slotted progress bar
+//add neg and pos var
+
 const onProgress = (event) => {
   const progressBar = event.target.querySelector('.progress-bar');
   const updatingBar = event.target.querySelector('.update-bar');
@@ -10,10 +12,30 @@ const onProgress = (event) => {
     progressBar.classList.remove('hide');
   }
 };
-// document.querySelector('model-viewer').addEventListener('progress', onProgress);
 
-var clicks = 0;
-function onClick(clicks) {
-  clicks += 1;
+
+function onClick() {
+    var clicks = 0
+    var clickCounter = 0
+    if(sessionStorage.getItem("clickCount") == null){
+      clickCounter = sessionStorage.setItem("clickCount", 0);
+    }
+    else if(sessionStorage.getItem("clickCount") >= 10)
+    {
+      clickCounter = sessionStorage.setItem("clickCount", 0);
+      //add ending of game
+    }
+    else
+    {
+      clicks = parseInt(sessionStorage.getItem("clickCount")); ;
+    }
+    clicks++; 
+    clickCounter = sessionStorage.setItem("clickCount", clicks);
     document.getElementById("clicks").innerHTML = clicks;
+    alert(clickCounter);
 };
+
+
+
+
+
