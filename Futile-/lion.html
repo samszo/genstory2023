@@ -33,7 +33,7 @@
                 console.log(story);
                 //d3.select("h2").data(story["o:title"]).attr("src", a=>a.thumbnail_url);
                 console.log(story["o:title"]);
-                if(event<indices.length){
+                if(event<2){
                     document.getElementsByTagName("h2")[0].innerHTML = story["o:title"];
                     document.getElementsByTagName("img")[0].src = story["thumbnail_display_urls"]["large"];  
                 }
