@@ -15,11 +15,14 @@
     <h1>The Lion King</h1>
 
     <h2></h2>
+    <img></img>
     <a href="./index.html"><button>Return to Main Menu</button></a>
 
     <script>
         let indices = [170, 172, 173, 174, 175, 177, 178];
         var event = 0;
+
+        //var text = "o:title"
         function ShowAndHide() {
 
     
@@ -30,20 +33,19 @@
                 console.log(story);
                 //d3.select("h2").data(story["o:title"]).attr("src", a=>a.thumbnail_url);
                 console.log(story["o:title"]);
-                //d3.select("h2").attr("o", a=>a.title);
-                document.getElementsByTagName("h2")[0].innerHTML = story["o:title"];
+                if(event<indices.length){
+                    document.getElementsByTagName("h2")[0].innerHTML = story["o:title"];
+                    document.getElementsByTagName("img")[0].src = story["thumbnail_display_urls"]["large"];  
+                }
+                else{
+                    document.getElementsByTagName("h2")[0].innerHTML = "The End";
+                    document.getElementsByTagName("button")[1].disabled = true;
+                }
             })
     
             //document.getElementsByTagName("h2")[0].innerHTML = story["genstory:hasEvenement"];
             event++;
             console.log(event);
-    
-            // if (x.style.display == 'none') {
-            //     x.style.display = 'block';
-            //     // console.log("hello")
-            // } else {
-            //     x.style.display = 'none';
-            // }
         }
     
     </script>
