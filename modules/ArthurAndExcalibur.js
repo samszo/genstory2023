@@ -15,6 +15,7 @@ export class ArthurAndExcalibur {
         }
 
         this.do=function(f,p){
+            console.log(f,p);
             switch (f) {
                 case 'Walk':
                     return me.Walk(p);
@@ -44,12 +45,15 @@ export class ArthurAndExcalibur {
             //add line between actant and object
             me.gen.g.append('line')
                 .attr('id',oLastFound.a['o:id']+'_take_'+oLastFound.ilf.o['o:id'])
-                .style("stroke", "lightgreen")
+                .style("stroke", "red")
                 .style("stroke-width", 10)
                 .attr("x1", oLastFound.p.x)
                 .attr("y1", oLastFound.p.y)
                 .attr("x2", oLastFound.ilf.p.x+(oLastFound.ilf.p.w/2))
                 .attr("y2", oLastFound.ilf.p.y+(oLastFound.ilf.p.h/2)); 
+
+            me.gen.processSuccess();
+
         }
 
         this.LookFor=function(p){

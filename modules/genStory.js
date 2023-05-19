@@ -73,15 +73,17 @@ export class genStory {
         this.processEvent= function(e){
             me.curEvent = e;
             sceneTitle.html(e["o:title"]);
+            if(!me.process)return;
             if(e["genstory:hasConditionInitial"]){
                 let ci =  e["genstory:hasConditionInitial"][0]['@value'];
-                if(me.process && me.process.do(ci)){
-                    //execute function with parameter
-                    e["genstory:hasFonction"].forEach((f,i) => {
-                        me.process.do(f['@value'],e["genstory:hasParam"][i]['@value']);
-                    });
-                }else me.processEchec();
+                if(!me.process.do(ci)) me.processEchec();
             }
+            if(e["genstory:hasFonction"]){
+                //execute function with parameter
+                e["genstory:hasFonction"].forEach((f,i) => {
+                    me.process.do(f['@value'],e["genstory:hasParam"][i]['@value']);
+                });
+            };
         }
         function getRandomItem(a){
            return a[Math.floor(Math.random()*a.length)]
