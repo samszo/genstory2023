@@ -28,12 +28,12 @@
     
             document.getElementsByTagName("button")[1].innerHTML = 'Next';
     
-            let text = 'https://www.rit.motsvoir.org/api/items/'.concat('175');
+            let text = 'https://www.rit.motsvoir.org/api/items/'.concat(indices[event]);
             d3.json(text).then(story => {
                 console.log(story);
                 //d3.select("h2").data(story["o:title"]).attr("src", a=>a.thumbnail_url);
                 console.log(story["o:title"]);
-                if(event<3){
+                if(event<=2){
                     document.getElementsByTagName("h2")[0].innerHTML = story["o:title"];
                     document.getElementsByTagName("img")[0].src = story["thumbnail_display_urls"]["large"];  
                 }
