@@ -5,17 +5,9 @@ html, body{
     height: auto;
     display: flex;
     flex-direction: column;
-    background-color:aliceblue;
+    background-color:white;
 }
 .wrapper{
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
-img{
-    height: 100%;
-    width: 100%;
-    object-fit: contain;
 }
 
 /* https://codepen.io/riojosdev/pen/RwrROqy */
@@ -30,11 +22,12 @@ img{
 }
 
 .left-point{
-	width: 0;
+    width: 0;
 	height: 0;
 	border-left: 2vh solid transparent;
 	border-right: 2vh solid transparent;
 	border-top: 10vh solid lightblue;
+	/* border-top: 10vh solid lightblue; */
 	position: absolute;
 	top: 45%;
 	left: -9%;
@@ -58,20 +51,44 @@ img{
 }
 
 .animals{
+    height: 80vh;
     display: flex;
-    position:absolute;
-    bottom:0;
-    right: 10%;
-    left: 10%;
+    background-image: url("../images/background.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    /* width: 90%;
+    margin-left: auto;
+    margin-right: auto; */
 }
 .animal{
-    display: flex;
+    place-self: self-end;
+}
+img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
 }
 .dog{
+    width: 50%;
+    padding-bottom: 2em;
 }
 .cat{
+    width: 30%;
 }
 .turtle{
+    width: 20%;
 }
 .snake{
+    width: 20%;
+    padding-bottom: 22em;
+}
+.message{
+    height: 20vh;
+}
+#text{
+    padding-top: 2em;
+    padding-bottom: 2em;
+    padding-left: 4em;
+    padding-right: 4em;
+    font-size: 1.2em;
 }

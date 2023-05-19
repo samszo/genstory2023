@@ -16,31 +16,26 @@
 <body>
     <div class="wrapper">
         <div class="animals">
-            <!-- <a href=""> -->
-                <div class="animal dog" onclick="ShowAndHide()">
-                    <img src="./assets/images/dog.png">
-                </div>
-                <div id="dialog-1">
-                    <div class="right-point">
-                    </div>
-                </div>
-            <!-- </a> -->
-            <!-- <a href=""> -->
-                <div class="animal cat">
-                    <img src="./assets/images/cat.png">
-                </div>
-            <!-- </a> -->
-            <!-- <a href=""> -->
-                <div class="animal turtle">
-                    <img src="./assets/images/turtle.png">
-                </div>
-            <!-- </a> -->
-            <!-- <a href=""> -->
-                <div class="animal snake">
-                    <img src="./assets/images/snake.png">
-                </div>
-            <!-- </a> -->
+            <div class="animal cat" onclick="tellStory(0)">
+                <img src="./assets/images/cat.png">
+            </div>
+            <div class="animal turtle" onclick="tellStory(0)">
+                <img src="./assets/images/turtle.png">
+            </div>
+            <div class="animal snake" onclick="tellStory(0)">
+                <img src="./assets/images/snake.png">
+            </div>
+            <div class="animal dog" onclick="tellStory(1)">
+                <img src="./assets/images/dog.png">
+            </div>
+            </div>
+        </div> 
+        <div class="message">
+            <div id="text">
+                <b>The dog said 1:</b> In a rural corner of Wisconsin, there I was, a young boy's faithful dog, working alongside him on his family's farm. 
+                Though the boy cherished me dearly, his peers often mocked him for his perceived lack of intelligence, and even his parents held disdain for him. 
+                Amidst this harsh treatment, my presence was the boy's solace, providing him unwavering companionship.
+            </div>
         </div>
-    </div> 
 </body>
 </html>
