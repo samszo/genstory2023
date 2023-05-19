@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="stylesheet" href="./styles.css">
-    <title>Document</title>
+    <title>Dreamscape</title>
 
 </head>
 <body>
@@ -17,7 +17,7 @@
 
     <script>
         d3.json('https://www.rit.motsvoir.org/api/items/206').then(story=>{
-            objects = [], doublons=[];
+            objects = [], doublons=[]; 
             let nb = story["genstory:hasActant"].length;
             while(objects.length < 10)
             {
@@ -32,21 +32,38 @@
                 return a.display_title
             }).append('button')
                 .style('position','absolute')
-                .style('left',(a,i)=>getRandomPosition(i))
-                .style('top',(a,i)=>getRandomPosition(i))
-                .html('test')
+                .style('left',(a,i)=>getRandomLeftPosition(i))
+                .style('top',(a,i)=>getRandomTopPosition(i))
+                .html(a=>a.display_title)
                 .on('click',buttonClick);
          });
 
-         function getRandomPosition(i){
-            return Math.floor(Math.random() * 200)+'px'
+         function getRandomLeftPosition(i){
+            return Math.floor((Math.random() * (window.innerWidth-100))+50)+'px'
+         }
+
+         function getRandomTopPosition(i){
+            return Math.floor((Math.random() * (window.innerHeight-200))+200)+'px'
          }
 
          function buttonClick(i,e){
-            console.log(i);
+            window.location.href = e.display_title + ".html"
          }
-
     </script> 
 
+    <a href="RubberDuck.html"> <button>Rubber Duck Testing</button> </a>
+
+    <script>
+        d3.json('https://www.rit.motsvoir.org/api/items/125').then(item=>{
+            alert(item["dcterms:description"][0]["@value"]);
+      /*d3.select('#items').select('div').data([item]).enter().append('div').html(a=>{
+               return a["dcterms:description"][0]["@value"]
+        });*/
+    });
+    </script>
+
+
 </body>
+
 </html>
+

@@ -26,7 +26,7 @@ a:hover { color: #30ADAD; }
 
 .tm-about-text a { color: #9F6; }
 
-h1, h2, p, i, address, .tm-text-white { color: white; }
+h1, h2, p, i, address, .tm-text-white { color: black; }
 
 .tm-link-gray { color: #999999; }
 .tm-link-white { color: white; }
@@ -45,8 +45,8 @@ h1, h2, p, i, address, .tm-text-white { color: white; }
 .tm-mb-40 { margin-bottom: 40px; }
 .tm-mb-50 { margin-bottom: 50px; }
 .tm-mb-80 { margin-bottom: 80px; }
-.tm-bgcolor-1 { background-color: #F96699; }
-.tm-bgcolor-2 { background-color: #38CCCC; }
+.tm-bgcolor-1 { background-color: whitesmoke; }
+.tm-bgcolor-2 { background-color: whitesmoke; }
 .tm-bgcolor-3 { background-color: #99CCCC; }
 .tm-bgcolor-4 { background-color: #000a96; }
 .tm-border-rounded { border-radius: 15px; }
@@ -58,11 +58,17 @@ section {
     margin-right: auto;
     margin-left: auto;
     margin-top: 15px;
-    height: 500px;
+    height: 800px;
+    padding: 20px;
 }
 
 img {
-    width: 500px; 
-    height: 400px;
+    width: 800px; 
+    height: 700px;
+    border-radius: 5%;
+}
+
+body {
+    background-color: #866F85;
 
 }

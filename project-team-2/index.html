@@ -12,7 +12,7 @@
 </head>
 <body>
     <script onload="">
-        d3.json('https://www.rit.motsvoir.org/api/items/137').then(story=>{
+        d3.json('https://www.rit.motsvoir.org/api/items/326').then(story=>{
             console.log(story);
             //d3.selectAll("p").data(story["genstory:hasActant"]).html(a=>a.display_title);
             //d3.selectAll(".char").data(story["genstory:hasActant"]).attr("src", a=>a.thumbnail_url);
@@ -20,7 +20,7 @@
             //d3.selectAll(".place").data(story["genstory:hasLieu"]).attr("src", a=>a.thumbnail_url);
             //d3.selectAll(".affect").data(story["genstory:hasAffect"]).attr("alt", a=>a.display_title);
             
-            let scenePictures = ["Charles", "Phoenician town", "Bright Stars Land", "mountain", "Pasadena", "Glade of fertile soil", "tree", "girl", "hands", "heart", "people", "SUNBASE", "future tree", "child", "dance", "hands2", "stardom", "flowers", "dancer", "Aya and teenagers friends", "agt", "trophy", "end"];
+            let scenePictures = ["Charles", "Phoenician town", "Bright Stars", "mountain", "Pasadena", "glade", "tree", "girl", "hands", "heart", "people", "SUNBASE", "Futur tree", "child", "dance", "hands2", "stardom", "flowers", "dancer", "Aya's band", "agt", "trophy", "end"];
             let sceneText = ["Charles had always been fascinated by science and the wonders of the universe.", 
             "As a young physics teacher in a small Phoenician town, he dreamed of exploring the stars and uncovering the secrets of the cosmos.", 
             "So when he heard about the Land of Bright Stars, he knew he had to do everything to be there.", 
@@ -46,7 +46,8 @@
             "Five years later, Charles and Maya reunited at the glade, under the shade of the towering Mayyas tree. As they gazed up at its branches, they realized that their love had blossomed like the tree, growing stronger and more beautiful with each passing year."]
             let sceneChars = ["charles"];
 
-            
+            console.log(scenePictures.length)
+
             let actors = story["genstory:hasActant"];
             let places = story["genstory:hasLieu"];
             let objects = story["genstory:hasObjet"];
@@ -76,7 +77,7 @@
                 let h = 0;
                 while (h < Math.max(places.length, actors.length, objects.length)) {
                     console.log(scenePictures[i]);
-                    if (scenePictures[i] === "future tree") {
+                    if (scenePictures[i] === "Futur tree") {
                         img[0].setAttribute("src", objects[0].thumbnail_url);
                         text[0].innerHTML = sceneText[i];
                         break;
